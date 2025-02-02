@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentina</title>
+    <style>
+        /* Sfondo con un colore semplice */
+        body {
+            background-color: #FFB6C1; /* Colore di sfondo semplice (rosa chiaro) */
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Card con sfondo semi-trasparente */
+        .container {
+            background-color: rgba(0, 0, 0, 0.7); /* Sfondo semi-trasparente per il testo leggibile */
+            padding: 40px;
+            border-radius: 20px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6); /* Ombra morbida per la card */
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #FF69B4; /* Colore rosa per il titolo */
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+        }
+
+        p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            font-weight: 300;
+            line-height: 1.6;
+            color: #FFD700;
+        }
+
+        .signature {
+            font-size: 18px;
+            margin-top: 30px;
+            font-weight: 500;
+            color: #FF1493;
+            text-align: right;
+            font-style: italic;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .button {
+            background-color: #FF69B4;
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Effetto hover che sposta il pulsante */
+        .button:hover {
+            background-color: #ff1493; /* Colore più scuro al passaggio del mouse */
+        }
+
+        .button:active {
+            transform: scale(0.95); /* Effetto quando il bottone viene cliccato */
+        }
+
+        /* Finestra di ringraziamento con colore romantico */
+        .thank-you {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #FFCCE5; /* Colore rosa romantico per il messaggio di ringraziamento */
+            color: #333;
+            padding: 30px;
+            border-radius: 15px;
+            font-size: 24px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+            width: 80%;
+            max-width: 600px;
+        }
+
+        /* Finestra per la chat di conferma */
+        .chat-message {
+            display: none;
+            position: fixed;
+            top: 60%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #FFCCE5; /* Colore rosa romantico per il messaggio di conferma */
+            color: #333;
+            padding: 20px;
+            font-size: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>¿Quieres ser mi Valentina?</h1>
+        <p>Con todo mi amor y mi corazón, quiero pedirte que seas mi Valentina, mi amor eterno. Eres todo lo que quiero, mi razón de ser, y tu "Sí" sería el regalo más hermoso que podría recibir. ¿Me harías el honor de ser mi Valentina, para siempre?</p>
+
+        <div class="buttons">
+            <button class="button" onclick="showThankYouMessage('Sí')">¡Sí, quiero!</button>
+            <button class="button no" onclick="moveButton(this)">No, lo siento...</button>
+        </div>
+
+        <div class="signature">Con amor, Rayan</div>
+    </div>
+
+    <!-- Finestra di ringraziamento -->
+    <div class="thank-you" id="thank-you-message">
+        ¡Mi corazón late por ti! 💖 Gracias por ser la razón de mis sonrisas. Tu "Sí" significa el comienzo de un amor eterno, y mi vida se ilumina con tu respuesta. ¡Eres mi Valentina para siempre! 🌹
+    </div>
+
+    <!-- Messaggio di conferma per la chat -->
+    <div class="chat-message" id="chat-message">
+        Ahora que has dicho "Sí", quiero que entres en nuestra chat y me digas: "¡He elegido ser tu Valentina para siempre!" para sellar nuestro amor eterno. 🌹💖
+    </div>
+
+    <script>
+        function moveButton(button) {
+            // Genera una posizione casuale per il pulsante "No"
+            const maxX = window.innerWidth - button.offsetWidth;
+            const maxY = window.innerHeight - button.offsetHeight;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            // Sposta il pulsante
+            button.style.position = 'absolute';
+            button.style.left = randomX + 'px';
+            button.style.top = randomY + 'px';
+        }
+
+        // Funzione per mostrare il messaggio romantico di ringraziamento
+        function showThankYouMessage(response) {
+            // Mostra il messaggio di ringraziamento
+            var message = document.getElementById("thank-you-message");
+            message.style.display = "block";
+
+            // Mostra il messaggio per la chat di conferma
+            var chatMessage = document.getElementById("chat-message");
+            chatMessage.style.display = "block";
+
+            // Azioni per il "Sí"
+            if (response === 'Sí') {
+                // Puoi aggiungere azioni qui per quando si clicca "Sí"
+                console.log("¡Sí, quiero!");
+            }
+        }
+    </script>
+</body>
+</html>
